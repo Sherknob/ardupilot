@@ -63,6 +63,8 @@
 #include "stm32l4+_mcuconf.h"
 #elif defined(STM32L4)
 #include "stm32l4_mcuconf.h"
+#elif defined(STM32WB)
+#include "stm32wb_mcuconf.h"
 #else
 #error "Unsupported MCU"
 #endif

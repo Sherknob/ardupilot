@@ -809,6 +809,9 @@ class ChibiOSHWDef(object):
               mcu_series.startswith('STM32G4') or
               mcu_series.startswith('STM32L4')):
             return [2] * (self.get_config('FLASH_SIZE_KB', type=int)//2)
+        elif mcu_series.startswith("STM32WB"):
+            if self.get_config('FLASH_SIZE_KB', type=int) == 1024:
+                return [4] * (self.get_config('FLASH_SIZE_KB', type=int)//4)
         else:
             raise Exception("Unsupported flash size MCU %s" % mcu_series)
 
@@ -823,6 +826,7 @@ class ChibiOSHWDef(object):
         '''return the offset in flash of a page number'''
         pages = self.get_flash_pages_sizes()
         offset = 0
+        print("sector", sector)
         for i in range(sector):
             offset += pages[i]
         return offset
@@ -1064,6 +1068,7 @@ class ChibiOSHWDef(object):
         storage_flash_page = self.get_storage_flash_page()
         flash_reserve_end = self.get_config('FLASH_RESERVE_END_KB', default=0, type=int)
         if storage_flash_page is not None:
+            print("storage_flash_page: ", storage_flash_page)
             if not args.bootloader:
                 f.write('#define STORAGE_FLASH_PAGE %u\n' % storage_flash_page)
                 self.validate_flash_storage_size()

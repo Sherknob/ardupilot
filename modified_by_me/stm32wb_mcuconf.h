@@ -1,0 +1,1 @@
+/home/ring/programming/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/common/stm32wb_mcuconf.h

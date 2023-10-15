@@ -1,0 +1,1 @@
+/home/ring/programming/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/scripts/STM32WB55xx.py
